@@ -3,7 +3,7 @@ const Recipe = require('../models/recipeModel');
 const User = require('../models/userModel');
 const generateToken = require("../utils/generateToken");
 
-// Clears a user's pantry
+// Clears a user's saved recipes
 const clearRecipes = asyncHandler(async (req, res) => {
     const { UserId } = req.body;
 
@@ -15,7 +15,7 @@ const clearRecipes = asyncHandler(async (req, res) => {
 
         if (updatedUser) {
             res.json({
-                UserId: updatedUser._id,
+                _id: updatedUser._id,
                 Saved_recipes: updatedUser.Saved_recipes
             });
         } else {
@@ -28,27 +28,26 @@ const clearRecipes = asyncHandler(async (req, res) => {
     }
 });
 
-// Adds an ingredient to a user's pantry
-// If the ingredient already exists, add to the amount
+// Adds a recipe to a user's saved recipes
 const addRecipe = asyncHandler(async (req,res) => {
-    const { UserId, IngredientId, Name, Image, Amount, Unit } = req.body;
+    const { UserId, RecipeId, Name, Image } = req.body;
 
     const user = await User.findById(UserId);
 
-    if (user) {
-        let ingredientList = user.Pantry;
+    /*if (user) {
+        let recipeList = user.Saved_recipes;
 
-        // If there are no ingredients in pantry, just add one
-        if (ingredientList.length == 0) {
-            ingredientList.push({IngredientId,Name,Image,Amount,Unit});
-            user.Pantry = ingredientList;
+        // If there are no recipes saved, just add one
+        if (recipeList.length == 0) {
+            recipeList.push({RecipeId,Name,Image});
+            user.Saved_recipes = recipeList;
 
             const updatedUser = await user.save();
 
             if (updatedUser) {
                 res.json({
-                    UserId: updatedUser._id,
-                    Pantry: updatedUser.Pantry,
+                    _id: updatedUser._id,
+                    Saved_recipes: updatedUser.Saved_recipes,
                     token: generateToken(user._id),
                 });
 
@@ -58,45 +57,24 @@ const addRecipe = asyncHandler(async (req,res) => {
                 throw new Error("Unable to update user with ID " + UserId);
             }
         } else {
-            // Otherwise, check every ingredient to see if ingredient already exists
-            for (let i = 0; i < ingredientList.length; i++) {
-                // If we already have the ingredient in our pantry...
-                if (ingredientList[i].IngredientId == IngredientId) {
-                    // If the units match up...
-                    if (ingredientList[i].Unit == Unit) {
-                        // Just add more of ingredient to pantry
-                        ingredientList[i].Amount += Amount;
-                        user.Pantry = ingredientList;
-
-                        const updatedUser = await user.save();
-
-                        if (updatedUser) {
-                            res.json({
-                                UserId: updatedUser._id,
-                                Pantry: updatedUser.Pantry,
-                                token: generateToken(user._id),
-                            });
-
-                            return;
-                        } else {
-                            res.status(400);
-                            throw new Error("Unable to update user with ID " + UserId);
-                        }
-                    } else {
-                        // TODO: Add functionality for inconsistent units
-                    }
+            // Otherwise, check every recipe to see if the recipe already exists
+            for (let i = 0; i < recipeList.length; i++) {
+                // If we already have the recipe saved, we cannot save it again
+                if (recipeList[i].RecipeId == RecipeId) {
+                    res.status(400);
+                    throw new Error("Recipe with ID " + RecipeId + " already exists in the saved recipes of the user with ID " + UserId);
                 }
             }
-            // If no matching ingredient was found in pantry, add it to pantry
-            ingredientList.push({IngredientId,Name,Image,Amount,Unit});
-            user.Pantry = ingredientList;
+            // If no matching recipe was found, add it
+            recipeList.push({RecipeId,Name,Image});
+            user.Saved_recipes = recipeList;
 
             const updatedUser = await user.save();
 
             if (updatedUser) {
                 res.json({
-                    UserId: updatedUser._id,
-                    Pantry: updatedUser.Pantry,
+                    _id: updatedUser._id,
+                    Saved_recipes: updatedUser.Saved_recipes,
                     token: generateToken(user._id),
                 });
 
@@ -109,79 +87,50 @@ const addRecipe = asyncHandler(async (req,res) => {
     } else {
         res.status(400);
         throw new Error("Unable to find the user associated with ID " + UserId);
-    }
+    }*/
+    res.json({});
 });
 
-// Removes an ingredient from a user's pantry
-// If the ingredient already exists, subtracts from the amount of ingredient
+// Removes a recipe from a user's saved recipes
 const removeRecipeById = asyncHandler(async (req,res) => {
-    const { UserId, IngredientId, Amount, Unit } = req.body;
+    const { UserId, RecipeId } = req.body;
 
     const user = await User.findById(UserId);
 
     if (user) {
-        let ingredientList = user.Pantry;
+        let recipeList = user.Saved_recipes;
 
-        // If there are no ingredients in pantry, we cannot remove any ingredient
-        if (ingredientList.length == 0) {
+        // If there are no recipes saved, we cannot remove recipes
+        if (recipeList.length == 0) {
             res.status(400);
-            throw new Error("Ingredient with ID " + IngredientId + " does not exist in the pantry of the user with ID " + UserId);
+            throw new Error("Recipe with ID " + RecipeId + " does not exist in the saved recipes of the user with ID " + RecipeId);
         } else {
-            // Otherwise, check every ingredient to see if ingredient already exists
-            for (let i = 0; i < ingredientList.length; i++) {
-                // If we already have the ingredient in our pantry...
-                if (ingredientList[i].IngredientId == IngredientId) {
-                    // If the units match up...
-                    if (ingredientList[i].Unit == Unit) {
-                        // If we are removing all of available unit or more, just delete the ingredient from pantry
-                        if (ingredientList[i].Amount <= Amount) {
-                            ingredientList.splice(i, i+1);
-                            console.log(i);
-                            console.log(ingredientList);
-                            user.Pantry = ingredientList;
+            // Otherwise, check every recipe to see if recipe exists
+            for (let i = 0; i < recipeList.length; i++) {
+                // If we have the recipe saved...
+                if (recipeList[i].RecipeId == RecipeId) {
+                    recipeList.splice(i, i+1);
+                    user.Saved_recipes = recipeList;
 
-                            const updatedUser = await user.save();
+                    const updatedUser = await user.save();
 
-                            if (updatedUser) {
-                                res.json({
-                                    UserId: updatedUser._id,
-                                    Pantry: updatedUser.Pantry,
-                                    token: generateToken(user._id),
-                                });
+                    if (updatedUser) {
+                        res.json({
+                            _id: updatedUser._id,
+                            Saved_recipes: updatedUser.Saved_recipes,
+                            token: generateToken(user._id),
+                        });
 
-                                return;
-                            } else {
-                                res.status(400);
-                                throw new Error("Unable to update user with ID " + UserId);
-                            }
-                        } else {
-                            // Else, just subtract the amount of ingredient from pantry
-                            ingredientList[i].Amount -= Amount;
-                            user.Pantry = ingredientList;
-
-                            const updatedUser = await user.save();
-
-                            if (updatedUser) {
-                                res.json({
-                                    UserId: updatedUser._id,
-                                    Pantry: updatedUser.Pantry,
-                                    token: generateToken(user._id),
-                                });
-
-                                return;
-                            } else {
-                                res.status(400);
-                                throw new Error("Unable to update user with ID " + UserId);
-                            }
-                        }
+                        return;
                     } else {
-                        // TODO: Add functionality for inconsistent units
+                        res.status(400);
+                        throw new Error("Unable to update user with ID " + UserId);
                     }
                 }
             }
-            // If no matching ingredient was found in pantry, we can't remove it
+            // If no matching recipe was found, we can't remove it
             res.status(400);
-            throw new Error("Ingredient with ID " + IngredientId + " does not exist in the pantry of the user with ID " + UserId);
+            throw new Error("Recipe with ID " + RecipeId + " does not exist in the saved recipes of the user with ID " + UserId);
         }
     } else {
         res.status(400);
@@ -189,24 +138,24 @@ const removeRecipeById = asyncHandler(async (req,res) => {
     }
 });
 
-// Searches a user's pantry for any ingredients with similar names to a given query
+// Searches a user's saved recipes for any recipes with similar names to a given query
 const searchRecipeByName = asyncHandler(async (req,res) => {
     const { UserId, Name } = req.body;
 
     const user = await User.findById(UserId);
 
     if (user) {
-        let ingredientList = user.Pantry;
+        let recipeList = user.Saved_recipes;
         let retList = [];
 
-        for (let i = 0; i < ingredientList.length; i++) {
-            if (ingredientList[i].Name.includes(Name)) {
-                retList.push(ingredientList[i]);
+        for (let i = 0; i < recipeList.length; i++) {
+            if (recipeList[i].Name.includes(Name)) {
+                retList.push(recipeList[i]);
             }
         }
 
         res.json({
-            UserId: user._id,
+            _id: user._id,
             SearchResults: retList
         });
     } else {
@@ -215,15 +164,15 @@ const searchRecipeByName = asyncHandler(async (req,res) => {
     }
 });
 
-// Gets a user's pantry
+// Gets a user's saved recipes
 const getRecipes = asyncHandler(async (req, res) => {
     const {UserId} = req.body;
     const user = await User.findById(UserId);
 
     if (user) {
         res.json({
-            UserId: user._id,
-            Pantry: user.Pantry
+            _id: user._id,
+            Saved_recipes: user.Saved_recipes
         });
     } else {
         res.status(400);
