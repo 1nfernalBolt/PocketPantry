@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Ingredient = require('../models/ingredientModel');
 const bcrypt = require('bcryptjs');
 
 // Schema of what a user has
@@ -30,7 +31,28 @@ const userSchema = mongoose.Schema(
             required: true,
         },
         Pantry: {
-            type: [String],
+            type: [{
+                IngredientId: {
+                    type: Number,
+                    required: true,
+                },
+                Name: {
+                    type: String,
+                    required: true,
+                },
+                Image: {
+                    type: String,
+                    required: true,
+                },
+                Amount: {
+                    type: Number,
+                    required: true,
+                },
+                Unit: {
+                    type: String,
+                    required: true,
+                },
+            }],
             required: true,
         },
     },
@@ -49,6 +71,7 @@ userSchema.pre('save', async function(next) {
     this.Password = await bcrypt.hash(this.Password, salt);
 });
 
+// Compares password
 userSchema.methods.matchPassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.Password);
 };

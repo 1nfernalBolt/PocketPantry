@@ -61,48 +61,4 @@ const authUser = asyncHandler(async (req,res) => {
     }
 });
 
-// Gets a user by a given ID
-const getUserById = asyncHandler(async (req, res) => {
-    const { _id } = req.body;
-
-    const user = await User.findById(_id);
-
-    if (user) {
-        res.json({
-            _id: user._id,
-            First_name: user.First_name,
-            Last_name: user.Last_name,
-            Email: user.Email,
-            Saved_recipes: user.Saved_recipes,
-            Shopping_list: user.Shopping_list,
-            Pantry: user.Pantry,
-            token: generateToken(user._id),
-        });
-    } else {
-        res.status(400);
-        throw new Error("No user found with id " + _id);
-    }
-});
-
-// Updates a user with a given ID
-// Password MUST come in already hashed
-const updateUserById = asyncHandler(async (req, res) => {
-    const { _id, First_name, Last_name, Password } = req.body;
-
-    const user = await User.findByIdAndUpdate(_id, {First_name, Last_name, Password});
-
-    if (user) {
-        res.json({
-            _id: user._id,
-            First_name: First_name,
-            Last_name: Last_name,
-            Email: user.Email,
-            token: generateToken(user._id),
-        });
-    } else {
-        res.status(400);
-        throw new Error("No user found with id " + _id + ", or otherwise unable to update");
-    }
-});
-
-module.exports = {registerUser, authUser, getUserById, updateUserById};
+module.exports = {registerUser, authUser};
