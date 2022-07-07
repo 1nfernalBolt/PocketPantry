@@ -4,10 +4,10 @@ const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const path = require("path");
 const { response } = require('express');
-const userRoutes = require('./routes/userRoutes');
-const pantryRoutes = require('./routes/pantryRoutes');
-const recipeRoutes = require('./routes/recipeRoutes');
-const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
+//const userRoutes = require('./routes/userRoutes');
+//const pantryRoutes = require('./routes/pantryRoutes');
+//const recipeRoutes = require('./routes/recipeRoutes');
+//const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
 dotenv.config();
@@ -28,11 +28,11 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-app.use('/api/users', userRoutes);
-app.use('/api/pantry', pantryRoutes);
-app.use('/api/recipe', recipeRoutes);
-app.use(notFound);
-app.use(errorHandler);
+//app.use('/api/users', userRoutes);
+//app.use('/api/pantry', pantryRoutes);
+//app.use('/api/recipe', recipeRoutes);
+//app.use(notFound);
+//app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
