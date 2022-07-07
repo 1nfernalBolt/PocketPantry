@@ -7,6 +7,6 @@ router.route('/clearPantry').post(clearPantry);
 router.route('/addIngredient').post(addIngredient);
 router.route('/removeIngredient').post(removeIngredient);
 router.route('/searchIngredientByName').post(searchIngredientByName);
-router.route('/getPantry').post(getPantry)
+router.route('/getPantry').post(getPantry);
 
 module.exports = router;

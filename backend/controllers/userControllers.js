@@ -85,7 +85,7 @@ const getUserById = asyncHandler(async (req, res) => {
 });
 
 // Updates a user with a given ID
-// Password MUST come in already hashed
+// Password must come in already hashed
 const updateUserById = asyncHandler(async (req, res) => {
     const { _id, First_name, Last_name, Password } = req.body;
 

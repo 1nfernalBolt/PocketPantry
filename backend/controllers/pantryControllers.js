@@ -20,11 +20,11 @@ const clearPantry = asyncHandler(async (req, res) => {
             });
         } else {
             res.status(400);
-            throw new Error("Unable to clear pantry of user with ID " + _id);
+            throw new Error("Unable to clear pantry of user with ID " + UserId);
         }
     } else {
         res.status(400);
-        throw new Error("Unable to find user by ID " + _id);
+        throw new Error("Unable to find user by ID " + UserId);
     }
 });
 
