@@ -15,7 +15,7 @@ const clearPantry = asyncHandler(async (req, res) => {
 
         if (updatedUser) {
             res.json({
-                UserId: updatedUser._id,
+                _id: updatedUser._id,
                 Pantry: updatedUser.Pantry
             });
         } else {
@@ -47,7 +47,7 @@ const addIngredient = asyncHandler(async (req,res) => {
 
             if (updatedUser) {
                 res.json({
-                    UserId: updatedUser._id,
+                    _id: updatedUser._id,
                     Pantry: updatedUser.Pantry,
                     token: generateToken(user._id),
                 });
@@ -72,7 +72,7 @@ const addIngredient = asyncHandler(async (req,res) => {
 
                         if (updatedUser) {
                             res.json({
-                                UserId: updatedUser._id,
+                                _id: updatedUser._id,
                                 Pantry: updatedUser.Pantry,
                                 token: generateToken(user._id),
                             });
@@ -95,7 +95,7 @@ const addIngredient = asyncHandler(async (req,res) => {
 
             if (updatedUser) {
                 res.json({
-                    UserId: updatedUser._id,
+                    _id: updatedUser._id,
                     Pantry: updatedUser.Pantry,
                     token: generateToken(user._id),
                 });
@@ -136,15 +136,13 @@ const removeIngredient = asyncHandler(async (req,res) => {
                         // If we are removing all of available unit or more, just delete the ingredient from pantry
                         if (ingredientList[i].Amount <= Amount) {
                             ingredientList.splice(i, i+1);
-                            console.log(i);
-                            console.log(ingredientList);
                             user.Pantry = ingredientList;
 
                             const updatedUser = await user.save();
 
                             if (updatedUser) {
                                 res.json({
-                                    UserId: updatedUser._id,
+                                    _id: updatedUser._id,
                                     Pantry: updatedUser.Pantry,
                                     token: generateToken(user._id),
                                 });
@@ -163,7 +161,7 @@ const removeIngredient = asyncHandler(async (req,res) => {
 
                             if (updatedUser) {
                                 res.json({
-                                    UserId: updatedUser._id,
+                                    _id: updatedUser._id,
                                     Pantry: updatedUser.Pantry,
                                     token: generateToken(user._id),
                                 });
@@ -206,7 +204,7 @@ const searchIngredientByName = asyncHandler(async (req,res) => {
         }
 
         res.json({
-            UserId: user._id,
+            _id: user._id,
             SearchResults: retList
         });
     } else {
@@ -222,7 +220,7 @@ const getPantry = asyncHandler(async (req, res) => {
 
     if (user) {
         res.json({
-            UserId: user._id,
+            _id: user._id,
             Pantry: user.Pantry
         });
     } else {
