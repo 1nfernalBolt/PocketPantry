@@ -1,5 +1,4 @@
 const express = require('express');
-const notes = require('./data/notes');
 const dotenv = require('dotenv');
 const connectDB = require('./config/db');
 const path = require("path");
@@ -7,6 +6,7 @@ const { response } = require('express');
 const userRoutes = require('./routes/userRoutes');
 const pantryRoutes = require('./routes/pantryRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
+const listRoutes = require('./routes/listRoutes');
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
@@ -31,6 +31,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/api/users', userRoutes);
 app.use('/api/pantry', pantryRoutes);
 app.use('/api/recipe', recipeRoutes);
+app.use('/api/list', listRoutes);
 app.use(notFound);
 app.use(errorHandler);
 
