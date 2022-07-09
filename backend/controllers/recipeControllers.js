@@ -34,14 +34,15 @@ const addRecipe = asyncHandler(async (req,res) => {
 
     const user = await User.findById(UserId);
 
-    /*if (user) {
+    if (user) {
         let recipeList = user.Saved_recipes;
 
         // If there are no recipes saved, just add one
         if (recipeList.length == 0) {
+            
             recipeList.push({RecipeId,Name,Image});
             user.Saved_recipes = recipeList;
-
+            
             const updatedUser = await user.save();
 
             if (updatedUser) {
@@ -87,8 +88,7 @@ const addRecipe = asyncHandler(async (req,res) => {
     } else {
         res.status(400);
         throw new Error("Unable to find the user associated with ID " + UserId);
-    }*/
-    res.json({});
+    }
 });
 
 // Removes a recipe from a user's saved recipes
