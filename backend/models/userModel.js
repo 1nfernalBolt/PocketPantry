@@ -23,11 +23,45 @@ const userSchema = mongoose.Schema(
             required: true,
         },
         Saved_recipes: {
-            type: [String],
+            type: [{
+                RecipeId: {
+                    type: Number,
+                    required: true,
+                },
+                Name: {
+                    type: String,
+                    required: true,
+                },
+                Image: {
+                    type: String,
+                    required: true,
+                },
+            }],
             required: true,
         },
         Shopping_list: {
-            type: [String],
+            type: [{
+                IngredientId: {
+                    type: Number,
+                    required: true,
+                },
+                Name: {
+                    type: String,
+                    required: true,
+                },
+                Image: {
+                    type: String,
+                    required: true,
+                },
+                Amount: {
+                    type: Number,
+                    required: true,
+                },
+                Unit: {
+                    type: String,
+                    required: true,
+                },
+            }],
             required: true,
         },
         Pantry: {
