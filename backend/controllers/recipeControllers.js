@@ -1,10 +1,9 @@
-
 const asyncHandler = require("express-async-handler");
 const User = require('../models/userModel');
 const generateToken = require("../utils/generateToken");
 
 // Clears a user's saved recipes
-const clearRecipes = asyncHandler(async (req, res) => {
+clearRecipes = asyncHandler(async (req, res) => {
     const { UserId } = req.body;
 
     const user = await User.findById(UserId);
@@ -29,7 +28,7 @@ const clearRecipes = asyncHandler(async (req, res) => {
 });
 
 // Adds a recipe to a user's saved recipes
-const addRecipe = asyncHandler(async (req,res) => {
+addRecipe = asyncHandler(async (req,res) => {
     const { UserId, RecipeId, Name, Image } = req.body;
 
     const user = await User.findById(UserId);
@@ -92,7 +91,7 @@ const addRecipe = asyncHandler(async (req,res) => {
 });
 
 // Removes a recipe from a user's saved recipes
-const removeRecipeById = asyncHandler(async (req,res) => {
+removeRecipeById = asyncHandler(async (req,res) => {
     const { UserId, RecipeId } = req.body;
 
     const user = await User.findById(UserId);
@@ -139,7 +138,7 @@ const removeRecipeById = asyncHandler(async (req,res) => {
 });
 
 // Searches a user's saved recipes for any recipes with similar names to a given query
-const searchRecipeByName = asyncHandler(async (req,res) => {
+searchRecipeByName = asyncHandler(async (req,res) => {
     const { UserId, Name } = req.body;
 
     const user = await User.findById(UserId);
@@ -165,7 +164,7 @@ const searchRecipeByName = asyncHandler(async (req,res) => {
 });
 
 // Gets a user's saved recipes
-const getRecipes = asyncHandler(async (req, res) => {
+getRecipes = asyncHandler(async (req, res) => {
     const {UserId} = req.body;
     const user = await User.findById(UserId);
 
@@ -181,7 +180,7 @@ const getRecipes = asyncHandler(async (req, res) => {
 });
 
 module.exports = { clearRecipes, addRecipe, removeRecipeById, searchRecipeByName, getRecipes };
-=======
+
 const asyncHandler = require("express-async-handler");
 const Recipe = require('../models/recipeModel');
 const User = require('../models/userModel');
