@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const Recipe = require('../models/recipeModel');
 const User = require('../models/userModel');
 const generateToken = require("../utils/generateToken");
 

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Ingredient = require('../models/ingredientModel');
 const bcrypt = require('bcryptjs');
 
 // Schema of what a user has
@@ -21,6 +20,11 @@ const userSchema = mongoose.Schema(
         Password: {
             type: String,
             required: true,
+        },
+        Verified: {
+            type: Boolean,
+            required: true,
+            default: false,
         },
         Saved_recipes: {
             type: [{
@@ -59,6 +63,10 @@ const userSchema = mongoose.Schema(
                 },
                 Unit: {
                     type: String,
+                    required: true,
+                },
+                Checked: {
+                    type: Boolean,
                     required: true,
                 },
             }],

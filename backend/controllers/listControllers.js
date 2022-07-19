@@ -1,5 +1,4 @@
 const asyncHandler = require("express-async-handler");
-const Ingredient = require('../models/ingredientModel');
 const User = require('../models/userModel');
 const generateToken = require("../utils/generateToken");
 
@@ -229,4 +228,38 @@ const getList = asyncHandler(async (req, res) => {
     }
 });
 
-module.exports = { clearList, addIngredient, removeIngredient, searchIngredientByName, getList };
+// Checks / unchecks an item on the shopping list
+const checkItemFromList = asyncHandler(async (req, res) => {
+    const { UserId, IngredientId, Checked } = req.body;
+    const user = await User.findById(UserId);
+
+    if (user) {
+        let ingredientList = user.Shopping_list;
+        let flag = false;
+
+        for (let i = 0; i < ingredientList.length; i++) {
+            if (ingredientList[i].IngredientId == IngredientId) {
+                ingredientList[i].Checked = Checked;
+                
+                user.Shopping_list = ingredientList;
+                await user.save();
+
+                res.json({
+                    _id: user._id,
+                    Shopping_list: user.Shopping_list,
+                });
+
+                flag = true;
+            }
+        }
+
+        if (!flag) {
+            throw new Error("Unable to find ingredient by ID " + IngredientId + " in the list of user with ID " + UserId);
+        }        
+    } else {
+        res.status(400);
+        throw new Error("Unable to find user by ID " + UserId);
+    }
+});
+
+module.exports = { clearList, addIngredient, removeIngredient, searchIngredientByName, getList, checkItemFromList };
