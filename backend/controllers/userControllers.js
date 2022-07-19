@@ -126,7 +126,7 @@ const verify = asyncHandler(async (req, res) => {
 });
 
 // Authenticate user API function
-const authUser = asyncHandler(async (req,res) => {
+authUser = asyncHandler(async (req,res) => {
     const { Email, Password } = req.body;
 
     const user = await User.findOne({ Email });
@@ -146,7 +146,7 @@ const authUser = asyncHandler(async (req,res) => {
 });
 
 // Gets a user by a given ID
-const getUserById = asyncHandler(async (req, res) => {
+getUserById = asyncHandler(async (req, res) => {
     const { _id } = req.body;
 
     const user = await User.findById(_id);
@@ -170,7 +170,7 @@ const getUserById = asyncHandler(async (req, res) => {
 
 // Updates a user with a given ID
 // Password must come in already hashed
-const updateUserById = asyncHandler(async (req, res) => {
+updateUserById = asyncHandler(async (req, res) => {
     const { _id, First_name, Last_name } = req.body;
 
     const user = await User.findByIdAndUpdate(_id, {First_name, Last_name});
@@ -287,13 +287,13 @@ const resetPass = asyncHandler(async (req, res) => {
 });
 
 module.exports = {registerUser, authUser, getUserById, updateUserById, verify, resendVerificationEmail, verifyPassToken, sendResetPassEmail, resetPass};
-=======
-const asyncHandler = require("express-async-handler");
-const User = require('../models/userModel');
-const generateToken = require("../utils/generateToken");
+
+asyncHandler = require("express-async-handler");
+User = require('../models/userModel');
+generateToken = require("../utils/generateToken");
 
 // Register user API function
-const registerUser = asyncHandler(async (req,res) => {
+registerUser = asyncHandler(async (req,res) => {
     const { First_name, Last_name, Email, Password } = req.body;
 
     const userExists = await User.findOne({Email});

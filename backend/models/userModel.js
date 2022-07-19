@@ -1,9 +1,8 @@
-
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // Schema of what a user has
-const userSchema = mongoose.Schema(
+let userSchema = mongoose.Schema(
     {
         First_name: {
             type: String,
@@ -123,13 +122,11 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 const User = mongoose.model('User', userSchema);
 
 module.exports = User;
-=======
-const mongoose = require('mongoose');
-const Ingredient = require('../models/ingredientModel');
-const bcrypt = require('bcryptjs');
 
-// Schema of what a user has
-const userSchema = mongoose.Schema(
+// mongoose = require('mongoose');
+const Ingredient = require('../models/ingredientModel');
+// bcrypt = require('bcryptjs');
+userSchema = mongoose.Schema(
     {
         First_name: {
             type: String,
@@ -237,6 +234,6 @@ userSchema.methods.matchPassword = async function (enteredPassword) {
 };
 
 // Link "User" to the schema and export
-const User = mongoose.model('User', userSchema);
+User = mongoose.model('User', userSchema);
 
 module.exports = User;

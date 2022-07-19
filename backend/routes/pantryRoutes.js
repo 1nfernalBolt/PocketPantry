@@ -2,7 +2,7 @@
 const express = require('express');
 const { clearPantry, addIngredient, removeIngredient, searchIngredientByName, getPantry } = require('../controllers/pantryControllers');
 const { protect } = require('../middlewares/authMiddleware');
-const router = express.Router();
+router = express.Router();
 
 // Routes for API's go here
 router.route('/clearPantry').post(protect, clearPantry);
@@ -13,7 +13,7 @@ router.route('/getPantry').post(protect, getPantry);
 
 const express = require('express');
 const { clearPantry, addIngredient, removeIngredient, searchIngredientByName, getPantry } = require('../controllers/pantryControllers');
-const router = express.Router();
+router = express.Router();
 
 // Routes for API's go here
 router.route('/clearPantry').post(clearPantry);

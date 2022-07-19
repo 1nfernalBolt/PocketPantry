@@ -1,8 +1,7 @@
-
 const express = require('express');
 const { registerUser, authUser, getUserById, updateUserById, verify, resendVerificationEmail, sendResetPassEmail, verifyPassToken, resetPass} = require('../controllers/userControllers');
 const { protect } = require('../middlewares/authMiddleware');
-const router = express.Router();
+router = express.Router();
 
 // Routes for API's go here
 router.route('/register').post(registerUser);
@@ -16,9 +15,9 @@ router.route('/resetPass').post(protect, resetPass);
 router.route('/verifyPassToken').post(protect, verifyPassToken);
 
 
-const express = require('express');
-const { registerUser, authUser, getUserById, updateUserById } = require('../controllers/userControllers');
-const router = express.Router();
+express = require('express');
+// const { registerUser, authUser, getUserById, updateUserById } = require('../controllers/userControllers');
+router = express.Router();
 
 // Routes for API's go here
 router.route('/register').post(registerUser);

@@ -30,7 +30,7 @@ const ingredientSchema = mongoose.Schema(
 );
 
 
-// Link "User" to the schema and export
+// Link "Ingredient" to the schema and export
 const Ingredient = mongoose.model('Ingredient', ingredientSchema);
 
 module.exports = Ingredient;

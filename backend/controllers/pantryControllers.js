@@ -29,7 +29,7 @@ const clearPantry = asyncHandler(async (req, res) => {
 
 // Adds an ingredient to a user's pantry
 // If the ingredient already exists, add to the amount
-const addIngredient = asyncHandler(async (req,res) => {
+addIngredient = asyncHandler(async (req,res) => {
     const { UserId, IngredientId, Name, Image, Amount, Unit } = req.body;
 
     const user = await User.findById(UserId);
@@ -113,7 +113,7 @@ const addIngredient = asyncHandler(async (req,res) => {
 
 // Removes an ingredient from a user's pantry
 // If the ingredient already exists, subtracts from the amount of ingredient
-const removeIngredient = asyncHandler(async (req,res) => {
+removeIngredient = asyncHandler(async (req,res) => {
     const { UserId, IngredientId, Amount, Unit } = req.body;
 
     const user = await User.findById(UserId);
@@ -187,7 +187,7 @@ const removeIngredient = asyncHandler(async (req,res) => {
 });
 
 // Searches a user's pantry for any ingredients with similar names to a given query
-const searchIngredientByName = asyncHandler(async (req,res) => {
+searchIngredientByName = asyncHandler(async (req,res) => {
     const { UserId, Name } = req.body;
 
     const user = await User.findById(UserId);
@@ -213,7 +213,7 @@ const searchIngredientByName = asyncHandler(async (req,res) => {
 });
 
 // Gets a user's pantry
-const getPantry = asyncHandler(async (req, res) => {
+getPantry = asyncHandler(async (req, res) => {
     const {UserId} = req.body;
     const user = await User.findById(UserId);
 
@@ -229,14 +229,14 @@ const getPantry = asyncHandler(async (req, res) => {
 });
 
 module.exports = { clearPantry, addIngredient, removeIngredient, searchIngredientByName, getPantry };
-=======
+
 const asyncHandler = require("express-async-handler");
 const Ingredient = require('../models/ingredientModel');
 const User = require('../models/userModel');
 const generateToken = require("../utils/generateToken");
 
 // Clears a user's pantry
-const clearPantry = asyncHandler(async (req, res) => {
+clearPantry = asyncHandler(async (req, res) => {
     const { UserId } = req.body;
 
     const user = await User.findById(UserId);
