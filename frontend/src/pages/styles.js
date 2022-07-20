@@ -64,12 +64,13 @@ export default makeStyles(() => ({
         fontWeight: '500',
         listStyle: 'none',
         padding: '10px 12px',
-        marginTop: '8%',
+        marginTop: '10%',
         width: '50%',
         background: '#A5DAAA',
         fontSize: '20px',
         fontColor: '#FFFFFF',
         fontFamily: 'Inria Sans',
+        
     },
     forgotPass:{
         fontFamily: 'Inria Sans',
@@ -82,11 +83,14 @@ export default makeStyles(() => ({
     questionText:{
         fontFamily: 'Inria Sans',
         fontSize: '20px',
+        marginTop: '6%'
     },
     emailInstructions:{
         fontFamily: 'Inria Sans',
-        fontSize: '30px',
+        fontSize: '25px',
         marginTop: '5%',
+        marginLeft: '5%',
+        marginRight: '5%'
     },
     underline:{
         fontFamily: 'Inria Sans',
