@@ -1,17 +1,7 @@
 import React from "react";
-import {Switch, Route, Link} from "react-router-dom";
-import {Routes} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
-import Login from "../pages/login";
-
+import Login from "../pages/login.js";
 import useStyles from './styles';
-
-import Navbar from "../Navbar";
-import { BrowserRouter as Router} from "react-router-dom";
-
-//import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
-
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
 import white from '../images/white.png';
 import pantry from '../images/pantry.jpg';
