@@ -1,4 +1,5 @@
 import React from "react";
+import {Switch, Route, Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import pocketPantryLogo from '../images/pocketPantryLogo.png';
@@ -24,7 +25,7 @@ const EmailConf =  () => {
             <img className = {classes.emailPic} src={email} alt="email icon"></img>
             <h1 className = {classes.emailInstructions}>Please check your email to verify the address you provided.</h1>
             <p className = {classes.questionText} >Didn't get an email?</p>
-            <p className = {classes.underline} >Send again</p>
+            <button className = {classes.underline} >Send again</button>
         </div>
         </ParallaxLayer>
         </Parallax>

@@ -64,38 +64,39 @@ export default makeStyles(() => ({
         fontWeight: '500',
         listStyle: 'none',
         padding: '10px 12px',
-        marginTop: '10%',
+        marginTop: '8%',
         width: '50%',
         background: '#A5DAAA',
         fontSize: '20px',
         fontColor: '#FFFFFF',
         fontFamily: 'Inria Sans',
-        
     },
     forgotPass:{
         fontFamily: 'Inria Sans',
         fontSize: '20px',
-        marginTop: '5%',
-        textAlign: 'left',
-        marginLeft: '15%',
-        marginBottom: '-4%',
+        marginTop: '1%',
+        marginLeft: '-33%',
+        textDecoration: 'underline',
+        border: 'none',
+        background: 'none',
     },
     questionText:{
         fontFamily: 'Inria Sans',
         fontSize: '20px',
-        marginTop: '6%'
+        
     },
     emailInstructions:{
         fontFamily: 'Inria Sans',
-        fontSize: '25px',
+        fontSize: '30px',
         marginTop: '5%',
-        marginLeft: '5%',
-        marginRight: '5%'
     },
     underline:{
         fontFamily: 'Inria Sans',
         fontSize: '20px',
         marginTop: '-5%',
+        textDecoration: 'underline',
+        border: 'none',
+        background: 'none',
     },
     
 }));
