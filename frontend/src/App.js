@@ -19,13 +19,9 @@ import { BrowserRouter as Router} from "react-router-dom";
 
 import useStyles from './styles';
 
-const App =  () => {
-    const classes = useStyles();
-    return (
+const App =  () => (
+    
         <>
-        <div>
-            <h1></h1>
-        </div>
         <Router>
             <Navbar />
             <Routes>
@@ -34,8 +30,7 @@ const App =  () => {
                 <Route path='/emailConf' element={<EmailConf/>} />
             </Routes>
         </Router>
-        </>
-    )  
-}
+        </> 
+);
 
 export default App;

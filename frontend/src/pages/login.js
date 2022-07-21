@@ -45,6 +45,7 @@ const Login = () => {
             setLoading(false);
         } catch (error) {
             setError(error.response.data.message);
+            setLoading(false);
         }
     };
 
@@ -53,6 +54,7 @@ const Login = () => {
             <Parallax pages = {1}>
                     <ParallaxLayer factor = {1} style = {{backgroundImage: `url(${pantry})`, backgroundSize: 'cover',}}>
             <div className={classes.mainDiv}>
+                {error && <errorMessage variant="danger"> {error}</errorMessage>}
                 <Form onSubmit = {submitHandler}>
                     <h1 className = {classes.title}>Login</h1>
                     <Form.Group controlId="formBasicEmail">
