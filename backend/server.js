@@ -7,12 +7,21 @@ const userRoutes = require('./routes/userRoutes');
 const pantryRoutes = require('./routes/pantryRoutes');
 const recipeRoutes = require('./routes/recipeRoutes');
 const listRoutes = require('./routes/listRoutes');
+const cors = require('cors');
 const { notFound, errorHandler } = require("./middlewares/errorMiddleware");
 
 const app = express();
 dotenv.config();
 connectDB();
 app.use(express.json());
+const corsOpts = {
+    origin: '*',
+    credentials: true,
+    methods: ['GET','POST','HEAD','PUT','PATCH','DELETE'],
+    allowedHeaders: ['Content-Type'],
+    exposedHeaders: ['Content-Type']
+};
+app.use(cors(corsOpts));
 
 // ------------deployment--------------
 __dirname = path.resolve();
@@ -22,6 +31,7 @@ if (process.env.NODE_ENV === 'production') {
     app.get('*', (req, res) => {
         response.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"));
     })
+
 } else {
     app.get('/', (req, res) => {
         res.send("API is running");

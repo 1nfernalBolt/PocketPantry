@@ -29,8 +29,8 @@ const App =  () => {
         <Router>
             <Navbar />
             <Routes>
-                <Route path='/register' element={<Register/>} />
                 <Route path='/login' element={<Login/>} />
+                <Route path='/register' element={<Register/>} />
                 <Route path='/emailConf' element={<EmailConf/>} />
             </Routes>
         </Router>
