@@ -21,8 +21,8 @@ const Login = () => {
       };
     const classes = useStyles();
 
-    const [email, setEmail]  = useState("");
-    const [password, setPassword] = useState("");
+    const [Email, setEmail]  = useState("");
+    const [Password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
 
@@ -37,7 +37,7 @@ const Login = () => {
             };
 
             setLoading(true);
-            const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/login", {email,password}, config);
+            const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/login", {Email,Password}, config);
             console.log(data);
             localStorage.setItem("userInfo",JSON.stringify(data));
 
@@ -60,7 +60,7 @@ const Login = () => {
                             className = {classes.loginUsernameBox} 
                             placeholder="Email" 
                             type="email" 
-                            value={email} 
+                            value={Email} 
                             onChange={(e) => setEmail(e.target.value)}/>
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
@@ -68,7 +68,7 @@ const Login = () => {
                             className = {classes.loginPasswordBox} 
                             placeholder="Password" 
                             type="password" 
-                            value={password} 
+                            value={Password} 
                             onChange={(e) => setPassword(e.target.value)}/>
                     </Form.Group>
                     <button onClick={navigateToForgot} className = {classes.forgotPass} >forgot password?</button><br />
