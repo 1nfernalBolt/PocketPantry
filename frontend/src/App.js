@@ -23,17 +23,14 @@ const App =  () => {
     const classes = useStyles();
     return (
         <>
-        <div>
-            <h1></h1>
-        </div>
-        <Router>
-            <Navbar />
-            <Routes>
-                <Route path='/login' element={<Login/>} />
-                <Route path='/register' element={<Register/>} />
-                <Route path='/emailConf' element={<EmailConf/>} />
-            </Routes>
-        </Router>
+            <Router>
+                <Navbar />
+                <Routes>
+                    <Route path='/login' element={<Login/>} />
+                    <Route path='/register' element={<Register/>} />
+                    <Route path='/emailConf' element={<EmailConf/>} />
+                </Routes>
+            </Router>
         </>
     )  
 }
