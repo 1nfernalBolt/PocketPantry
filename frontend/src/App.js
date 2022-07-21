@@ -4,7 +4,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import Login from "./pages/login";
 import Register from "./pages/register";
-import Home from "./pages/home";
 import EmailConf from "./pages/emailConf";
 
 
@@ -30,7 +29,6 @@ const App =  () => {
         <Router>
             <Navbar />
             <Routes>
-                <Route path='/' element={<Home/>} />
                 <Route path='/register' element={<Register/>} />
                 <Route path='/login' element={<Login/>} />
                 <Route path='/emailConf' element={<EmailConf/>} />

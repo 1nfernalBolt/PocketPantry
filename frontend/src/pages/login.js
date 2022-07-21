@@ -37,7 +37,7 @@ const Login = () => {
             };
 
             setLoading(true);
-            const {data} = await axios.post("/api/users", {email,password}, config);
+            const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/login", {email,password}, config);
             console.log(data);
             localStorage.setItem("userInfo",JSON.stringify(data));
 
