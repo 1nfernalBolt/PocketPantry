@@ -23,16 +23,16 @@ const App =  () => {
     const classes = useStyles();
     return (
         <>
-            <Router>
-                <Navbar />
-                <Routes>
-                    <Route path='/login' element={<Login/>} />
-                    <Route path='/register' element={<Register/>} />
-                    <Route path='/emailConf' element={<EmailConf/>} />
-                </Routes>
-            </Router>
+                <Router>
+                    <Navbar />
+                    <Routes>
+                        <Route path='/login' element={<Login/>} />
+                        <Route path='/register' element={<Register/>} />
+                        <Route path='/emailConf' element={<EmailConf/>} />
+                    </Routes>
+                </Router>
         </>
     )  
-}
+};
 
 export default App;
