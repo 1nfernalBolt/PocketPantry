@@ -6,19 +6,11 @@ import pantry from '../images/pantry.jpg';
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
 import axios from 'axios';
 import {Routes, Route, useNavigate} from 'react-router-dom';
-import Register from './register';
-import ForgotPass from "./forgotPass";
 
-const Login = () => {
+
+const ForgotPass = () => {
 
     const navigate = useNavigate();
-    
-    const navigateToForgot = () => {
-        navigate('/forgotPass');
-      };
-    const navigateToRegister = () => {
-        navigate('/register');
-      };
     const classes = useStyles();
 
     const [email, setEmail]  = useState("");
@@ -53,7 +45,7 @@ const Login = () => {
                     <ParallaxLayer factor = {1} style = {{backgroundImage: `url(${pantry})`, backgroundSize: 'cover',}}>
             <div className={classes.mainDiv}>
                 <Form onSubmit = {submitHandler}>
-                    <h1 className = {classes.title}>Login</h1>
+                    <h1 className = {classes.title}>Enter your registered email</h1>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control 
                             className = {classes.loginUsernameBox} 
@@ -70,20 +62,13 @@ const Login = () => {
                             value={password} 
                             onChange={(e) => setPassword(e.target.value)}/>
                     </Form.Group>
-                    <button onClick={navigateToForgot} className = {classes.forgotPass} >forgot password?</button><br />
                     <button className = {classes.loginButton} type="submit" >Sign In</button>
-                    <p className = {classes.questionText} >Don't have an account?</p>
-                    <button onClick={navigateToRegister} className = {classes.underline} >Register</button><br />
                 </Form>
             </div>
-            <Routes>
-            <Route path="/register" element={<Register/>} />
-            <Route path="/forgotPass" element={<ForgotPass/>} />
-            </Routes>
                 </ParallaxLayer>
             </Parallax>
         </div>
     )
 }
 
-export default Login;
+export default ForgotPass;
