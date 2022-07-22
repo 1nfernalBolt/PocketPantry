@@ -1,30 +1,123 @@
 import React from "react";
-import {Switch, Route, Link} from "react-router-dom";
+import {Routes, Route, useNavigate} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import Form from 'react-bootstrap/Form';
+import { useState } from "react";
 import useStyles from './styles';
 import pantry from '../images/pantry.jpg';
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
+import axios from "axios";
 
-const Register =  () => {
+const Register = () => {
+
+    const [First_name, setFirstName] = useState("");
+    const [Last_name, setLastName] = useState("");
+    const [Email, setEmail] = useState("");
+    const [confirmEmail, setConfirmEmail] = useState("");
+    const [Password, setPassword] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("");
+    const [message, setMessage] = useState(null);
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
     
     const classes = useStyles();
+
+    const navigate = useNavigate();
+
+    const navigateToEmailConf = () => {
+        navigate('/emailConf');
+    };
+
+    const submitHandler = async (e) => {
+        e.preventDefault();
+
+        if (Password !== confirmPassword) {
+            setMessage('Passwords do not match');
+        } else {
+            setMessage(null);
+            try {
+                const config = {
+                    headers: {
+                        "Content-type":"application/json",
+                    },
+                };
+
+                setLoading(true);
+
+                const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/register", {First_name, Last_name, Email, Password}, config);
+                setLoading(false);
+                localStorage.setItem("userInfo", JSON.stringify(data));
+
+            } catch (error) {
+                setError(error.response.data.message);
+                
+            }
+        }
+    };
+
     return (
         <div>
-        <Parallax pages = {1}>
-                <ParallaxLayer factor = {1} style = {{backgroundImage: `url(${pantry})`, backgroundSize: 'cover',}}>
-        <div className={classes.mainDiv}>
-            <h1 className = {classes.title}>Register</h1>
-            <input className = {classes.loginUsernameBox} placeholder="Email" /><br />
-            <input className = {classes.loginPasswordBox} placeholder="Confirm Email"/><br />
-            <input className = {classes.loginUsernameBox} placeholder="Password" /><br />
-            <input className = {classes.loginPasswordBox} placeholder="Confirm Password"/><br />
-            <button className = {classes.loginButton} onclick="doLogin();">Register</button>
+            <Parallax pages = {1}>
+                    <ParallaxLayer factor = {1} style = {{backgroundImage: `url(${pantry})`, backgroundSize: 'cover',}}>
+                        <div className={classes.regDiv}>
+                            {message && <errormessage class="text-danger" variant="danger">{message}</errormessage>}
+                            <Form onSubmit = {submitHandler}>
+                                <h1 className = {classes.title}>Register</h1>
+                                <Form.Group controlId="firstName">
+                                    <Form.Control 
+                                        className = {classes.loginUsernameBox} 
+                                        placeholder="First Name"
+                                        type = "name"
+                                        value={First_name}
+                                        onChange={(e) => setFirstName(e.target.value)}/>
+                                </Form.Group>
+                                <Form.Group controlId="First Name">
+                                    <Form.Control 
+                                        className = {classes.loginUsernameBox} 
+                                        placeholder="Last Name"
+                                        type = "lastName"
+                                        value={Last_name}
+                                        onChange={(e) => setLastName(e.target.value)}/>
+                                </Form.Group>
+                                <Form.Group controlId="formBasicEmail">
+                                    <Form.Control 
+                                        className = {classes.loginUsernameBox} 
+                                        placeholder="Email"
+                                        type = "email"
+                                        value={Email}
+                                        onChange={(e) => setEmail(e.target.value)}/>
+                                </Form.Group>
+                                <Form.Group controlId="confirmEmail">
+                                    <Form.Control 
+                                        className = {classes.loginUsernameBox} 
+                                        placeholder="Confirm Email"
+                                        type = "email"
+                                        value={confirmEmail}
+                                        onChange={(e) => setConfirmEmail(e.target.value)}/>
+                                </Form.Group>
+                                <Form.Group controlId="formBasicPassword">
+                                    <Form.Control 
+                                        className = {classes.loginPasswordBox} 
+                                        placeholder="Password"
+                                        type = "password"
+                                        value={Password}
+                                        onChange={(e) => setPassword(e.target.value)}/>
+                                </Form.Group>
+                                <Form.Group controlId="confirmPassword">
+                                    <Form.Control 
+                                        className = {classes.loginPasswordBox} 
+                                        placeholder="Confirm Password"
+                                        type = "password"
+                                        value={confirmPassword}
+                                        onChange={(e) => setConfirmPassword(e.target.value)}/>
+                                </Form.Group>
+                                <button className = {classes.loginButton} type="submit">Register</button>
+                            </Form>
+                        </div>
+                    </ParallaxLayer>
+            </Parallax>
         </div>
-        </ParallaxLayer>
-        </Parallax>
-        </div>
-        
     )
-}
+};
 
 export default Register;
