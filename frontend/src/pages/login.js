@@ -42,8 +42,9 @@ const Login = () => {
             console.log(data);
             localStorage.setItem("userInfo",JSON.stringify(data));
 
-
             setLoading(false);
+
+            console.log("Login Successful");
         } catch (error) {
             setError(error.response.data.message);
             setLoading(false);

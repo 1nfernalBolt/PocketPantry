@@ -3,12 +3,8 @@ import {Routes, Route, useNavigate} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
-
 import useStyles from './styles';
 import pantry from '../images/pantry.jpg';
-
-//import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
-
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
 import axios from "axios";
 
@@ -49,11 +45,12 @@ const Register = () => {
                 setLoading(true);
 
                 const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/register", {First_name, Last_name, Email, Password}, config);
-
                 setLoading(false);
                 localStorage.setItem("userInfo", JSON.stringify(data));
+
             } catch (error) {
                 setError(error.response.data.message);
+                
             }
         }
     };
@@ -114,7 +111,7 @@ const Register = () => {
                                         value={confirmPassword}
                                         onChange={(e) => setConfirmPassword(e.target.value)}/>
                                 </Form.Group>
-                                <button className = {classes.loginButton} onClick={navigateToEmailConf} type="submit">Register</button>
+                                <button className = {classes.loginButton} type="submit">Register</button>
                             </Form>
                         </div>
                     </ParallaxLayer>

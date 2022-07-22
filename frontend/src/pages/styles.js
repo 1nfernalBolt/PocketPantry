@@ -41,7 +41,7 @@ export default makeStyles(() => ({
         borderColor: 'black',
     },
     loginUsernameBox: {
-        borderRadius: '8%',
+        borderRadius: '8px',
         borderWidth: '0',
         display: 'inline-block',
         fontWeight: '500',

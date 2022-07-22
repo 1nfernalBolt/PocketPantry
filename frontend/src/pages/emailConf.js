@@ -1,19 +1,35 @@
-import React from "react";
+import {React, useState} from "react";
 import {Switch, Route, Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import pocketPantryLogo from '../images/pocketPantryLogo.png';
 import email from '../images/email.png';
 import pantry from '../images/pantry.jpg';
-
-
 import useStyles from './styles';
-
-//import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
-
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
+import axios from "axios";
 
 const EmailConf =  () => {
+
+    const [input, setInput] = useState("");
+    const [resend, setResend] = useState("");
+    const [error, setError] = useState("");
+
+    const Verify = async (e) => {
+        e.preventDefault();
+
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer {$userInfo.token}`,
+                },
+            };
+
+            const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/verify", )
+        } catch (error) {
+            
+        }
+    }
+
     const classes = useStyles();
     return (
         <div>
