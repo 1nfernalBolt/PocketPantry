@@ -1,15 +1,12 @@
 import React from "react";
 import {Switch, Route, Link} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
 import useStyles from './styles';
 import pantry from '../images/pantry.jpg';
-
-//import { Container, AppBar, Typography, Grow, Grid} from '@material-ui/core';
-
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
 
 const Register =  () => {
+    
     const classes = useStyles();
     return (
         <div>
