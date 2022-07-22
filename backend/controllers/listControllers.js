@@ -31,6 +31,7 @@ const clearList = asyncHandler(async (req, res) => {
 // If the ingredient already exists, add to the amount
 const addIngredient = asyncHandler(async (req,res) => {
     const { UserId, IngredientId, Name, Image, Amount, Unit } = req.body;
+    let Checked = false;
 
     const user = await User.findById(UserId);
 
@@ -39,7 +40,7 @@ const addIngredient = asyncHandler(async (req,res) => {
 
         // If there are no ingredients in list, just add one
         if (ingredientList.length == 0) {
-            ingredientList.push({IngredientId,Name,Image,Amount,Unit});
+            ingredientList.push({IngredientId,Name,Image,Amount,Unit,Checked});
             user.Shopping_list = ingredientList;
 
             const updatedUser = await user.save();
@@ -87,7 +88,7 @@ const addIngredient = asyncHandler(async (req,res) => {
                 }
             }
             // If no matching ingredient was found in list, add it to list
-            ingredientList.push({IngredientId,Name,Image,Amount,Unit});
+            ingredientList.push({IngredientId,Name,Image,Amount,Unit,Checked});
             user.Shopping_list = ingredientList;
 
             const updatedUser = await user.save();
