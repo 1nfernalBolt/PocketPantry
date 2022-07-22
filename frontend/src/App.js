@@ -18,19 +18,12 @@ import Navbar from "./Navbar";
 import { BrowserRouter as Router} from "react-router-dom";
 
 import useStyles from './styles';
+import Header from "./components/Header/Header";
 
 const App =  () => (
-    
-        <>
-        <Router>
-            <Navbar />
-            <Routes>
-                <Route path='/login' element={<Login/>} />
-                <Route path='/register' element={<Register/>} />
-                <Route path='/emailConf' element={<EmailConf/>} />
-            </Routes>
-        </Router>
-        </> 
+    <>
+        <Header/>
+    </>
 );
 
 export default App;
