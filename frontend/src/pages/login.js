@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from 'react-bootstrap/Form';
 import useStyles from './styles';
@@ -8,6 +7,7 @@ import axios from 'axios';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import Register from './register';
 import ForgotPass from "./forgotPass";
+import { useEffect, useState } from "react";
 
 const Login = () => {
 
@@ -26,7 +26,7 @@ const Login = () => {
     const [Password, setPassword] = useState("");
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
-      
+
     const submitHandler = async (e) => {
         e.preventDefault();
         
@@ -56,6 +56,7 @@ const Login = () => {
             <Parallax pages = {1}>
                     <ParallaxLayer factor = {1} style = {{backgroundImage: `url(${pantry})`, backgroundSize: 'cover',}}>
             <div className={classes.mainDiv}>
+                {error && <errormessage class="text-danger" variant="danger">{error}</errormessage>}
                 <Form onSubmit = {submitHandler}>
                     <h1 className = {classes.title}>Login</h1>
                     <Form.Group controlId="formBasicEmail">
@@ -63,7 +64,7 @@ const Login = () => {
                             className = {classes.loginUsernameBox} 
                             placeholder="Email"
                             type = "email"
-                            valyu={Email}
+                            value={Email}
                             onChange={(e) => setEmail(e.target.value)}/>
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
