@@ -19,28 +19,60 @@ const Login = () => {
     const navigateToRegister = () => {
         navigate('/register');
       };
+
     const classes = useStyles();
 
-    
+    const [Email, setEmail]  = useState("");
+    const [Password, setPassword] = useState("");
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+      
+    const submitHandler = async (e) => {
+        e.preventDefault();
+        
+        try {
+            const config = {
+                headers: {
+                    "Content-type":"application/json",
+                },
+            };
+
+            setLoading(true);
+            const {data} = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/login", {Email,Password}, config);
+            console.log(data);
+            localStorage.setItem("userInfo",JSON.stringify(data));
+
+
+            setLoading(false);
+        } catch (error) {
+            setError(error.response.data.message);
+            setLoading(false);
+            
+        }
+    };
 
     return (
         <div>
             <Parallax pages = {1}>
                     <ParallaxLayer factor = {1} style = {{backgroundImage: `url(${pantry})`, backgroundSize: 'cover',}}>
             <div className={classes.mainDiv}>
-                <Form>
+                <Form onSubmit = {submitHandler}>
                     <h1 className = {classes.title}>Login</h1>
                     <Form.Group controlId="formBasicEmail">
                         <Form.Control 
                             className = {classes.loginUsernameBox} 
-                            placeholder="Email" 
-                            />
+                            placeholder="Email"
+                            type = "email"
+                            valyu={Email}
+                            onChange={(e) => setEmail(e.target.value)}/>
                     </Form.Group>
                     <Form.Group controlId="formBasicPassword">
                         <Form.Control 
                             className = {classes.loginPasswordBox} 
-                            placeholder="Password" 
-                            />
+                            placeholder="Password"
+                            type="password" 
+                            value={Password} 
+                            onChange={(e) => setPassword(e.target.value)}/> 
                     </Form.Group>
                     <button onClick={navigateToForgot} className = {classes.forgotPass} >forgot password?</button><br />
                     <button className = {classes.loginButton} type="submit" >Sign In</button>
