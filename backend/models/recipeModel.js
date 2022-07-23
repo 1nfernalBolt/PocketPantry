@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 
 // Schema of what a recipe has
+
 const recipeSchema = mongoose.Schema(
     {
         RecipeId: {
             type: Number,
             required: true,
         },
-        Name: {
+        RecipeTitle: {
+            type: String,
+            required: true,
+        },
+        RecipeDesc: {
             type: String,
             required: true,
         },
