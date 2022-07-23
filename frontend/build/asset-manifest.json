@@ -1,15 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.073c9b0a.css",
-    "main.js": "/static/js/main.d01a20df.js",
+    "main.css": "/static/css/main.84487ea8.css",
+    "main.js": "/static/js/main.179711f6.js",
     "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/pantry.jpg": "/static/media/pantry.9e18a180d6ae0d4c9033.jpg",
+    "static/media/pocketPantryLogo.png": "/static/media/pocketPantryLogo.49a08d8f0b9f3cbfe5be.png",
+    "static/media/email.png": "/static/media/email.3477408fcfd36d82af36.png",
+    "static/media/white.png": "/static/media/white.29dfa584b5ccdac99285.png",
     "index.html": "/index.html",
-    "main.073c9b0a.css.map": "/static/css/main.073c9b0a.css.map",
-    "main.d01a20df.js.map": "/static/js/main.d01a20df.js.map",
+    "main.84487ea8.css.map": "/static/css/main.84487ea8.css.map",
+    "main.179711f6.js.map": "/static/js/main.179711f6.js.map",
     "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.d01a20df.js"
+    "static/css/main.84487ea8.css",
+    "static/js/main.179711f6.js"
   ]
 }
