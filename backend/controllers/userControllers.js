@@ -221,6 +221,7 @@ const sendResetPassEmail = asyncHandler(async (req, res) => {
         await sendEmail(user.Email, "Reset password for Pocket Pantry", "Use this code to reset your password: " + rand);
 
         res.status(201).json({
+            UserId: user._id,
             message: "Reset password email sent to user"
         });
     } catch (error) {
