@@ -10,8 +10,8 @@ router.route('/getUserById').post(protect, getUserById);
 router.route('/updateUserById').post(protect, updateUserById);
 router.route('/resendVerificationEmail').post(protect, resendVerificationEmail);
 router.route('/verify').post(protect, verify);
-router.route('/sendResetPassEmail').post(protect, sendResetPassEmail);
-router.route('/resetPass').post(protect, resetPass);
-router.route('/verifyPassToken').post(protect, verifyPassToken);
+router.route('/sendResetPassEmail').post(sendResetPassEmail);
+router.route('/resetPass').post(resetPass);
+router.route('/verifyPassToken').post(verifyPassToken);
 
 module.exports = router;
