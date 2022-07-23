@@ -11,7 +11,7 @@ router.route('/updateUserById').post(protect, updateUserById);
 router.route('/resendVerificationEmail').post(protect, resendVerificationEmail);
 router.route('/verify').post(protect, verify);
 router.route('/sendResetPassEmail').post(sendResetPassEmail);
-router.route('/resetPass').post(resetPass);
-router.route('/verifyPassToken').post(verifyPassToken);
+router.route('/resetPass').post(protect, resetPass);
+router.route('/verifyPassToken').post(protect, verifyPassToken);
 
 module.exports = router;
