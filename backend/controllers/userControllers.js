@@ -126,7 +126,7 @@ const verify = asyncHandler(async (req, res) => {
 });
 
 // Authenticate user API function
-authUser = asyncHandler(async (req,res) => {
+const authUser = asyncHandler(async (req,res) => {
     const { Email, Password } = req.body;
 
     const user = await User.findOne({ Email });
@@ -146,7 +146,7 @@ authUser = asyncHandler(async (req,res) => {
 });
 
 // Gets a user by a given ID
-getUserById = asyncHandler(async (req, res) => {
+const getUserById = asyncHandler(async (req, res) => {
     const { _id } = req.body;
 
     const user = await User.findById(_id);
@@ -170,7 +170,7 @@ getUserById = asyncHandler(async (req, res) => {
 
 // Updates a user with a given ID
 // Password must come in already hashed
-updateUserById = asyncHandler(async (req, res) => {
+const updateUserById = asyncHandler(async (req, res) => {
     const { _id, First_name, Last_name } = req.body;
 
     const user = await User.findByIdAndUpdate(_id, {First_name, Last_name});
@@ -210,6 +210,7 @@ const sendResetPassEmail = asyncHandler(async (req, res) => {
 
         let rand = Math.floor((Math.random() * 8999) + 1000);
         const token = await VerifyToken.create({
+            jwt_token: generateToken(user._id),
             UserId: user._id,
             Token: rand,
         });
