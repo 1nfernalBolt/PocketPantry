@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.a0295f45.css",
-    "main.js": "/static/js/main.0fd712e8.js",
+    "main.css": "/static/css/main.a0ca7e25.css",
+    "main.js": "/static/js/main.fa14a1ab.js",
     "static/media/pantry.jpg": "/static/media/pantry.9e18a180d6ae0d4c9033.jpg",
     "static/media/pocketPantryLogo.png": "/static/media/pocketPantryLogo.49a08d8f0b9f3cbfe5be.png",
     "static/media/email.png": "/static/media/email.3477408fcfd36d82af36.png",
     "index.html": "/index.html",
-    "main.a0295f45.css.map": "/static/css/main.a0295f45.css.map",
-    "main.0fd712e8.js.map": "/static/js/main.0fd712e8.js.map"
+    "main.a0ca7e25.css.map": "/static/css/main.a0ca7e25.css.map",
+    "main.fa14a1ab.js.map": "/static/js/main.fa14a1ab.js.map"
   },
   "entrypoints": [
-    "static/css/main.a0295f45.css",
-    "static/js/main.0fd712e8.js"
+    "static/css/main.a0ca7e25.css",
+    "static/js/main.fa14a1ab.js"
   ]
 }
