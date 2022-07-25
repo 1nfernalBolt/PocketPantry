@@ -7,6 +7,7 @@ import pantry from '../images/pantry.jpg';
 import useStyles from './styles';
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
 import axios from "axios";
+import Form from 'react-bootstrap/Form';
 
 const EmailConf =  () => {
 
@@ -30,6 +31,22 @@ const EmailConf =  () => {
         }
     }
 
+    const resendVerify = async (e) => {
+        e.preventDefault();
+
+        try {
+            const config = {
+                headers: {
+                    Authorization: `Bearer {$userInfo.token}`,
+                },
+            };
+
+            const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/resendVerificationEmail", )
+        } catch (error) {
+            
+        }
+    }
+
     const classes = useStyles();
     return (
         <div>
@@ -40,7 +57,18 @@ const EmailConf =  () => {
             <br></br>
             <img className = {classes.emailPic} src={email} alt="email icon"></img>
             <h1 className = {classes.emailInstructions}>Please check your email to verify the address you provided.</h1>
-            <p className = {classes.questionText} >Didn't get an email?</p>
+            <Form onSubmit = {Verify}>
+                    <Form.Group controlId="Email Confirmation">
+                        <Form.Control 
+                            className = {classes.loginUsernameBox} 
+                            placeholder="Enter Confirmation code"
+                            type = "integer"
+                            value={input}
+                            onChange={(e) => setInput(e.target.value)}/>
+                    </Form.Group>
+                    <button className = {classes.loginButton} type="submit">Submit</button>
+            </Form>
+            <p className = {classes.questionText} class="text-dark">Didn't get an email?</p>
             <button className = {classes.underline} >Send again</button>
         </div>
         </ParallaxLayer>

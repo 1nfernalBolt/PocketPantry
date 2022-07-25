@@ -21,7 +21,7 @@ import {
       };
   
       const { data } = await axios.post(
-        "/api/users/login",
+        "https://pocketpantryapp.herokuapp.com/api/users/login",
         { Email, Password },
         config
       );
@@ -45,7 +45,7 @@ import {
     dispatch({ type: USER_LOGOUT });
   };
   
-  export const register = (name, email, password, pic) => async (dispatch) => {
+  export const register = (First_name, Last_name, Email, Password) => async (dispatch) => {
     try {
       dispatch({ type: USER_REGISTER_REQUEST });
   
@@ -56,8 +56,8 @@ import {
       };
   
       const { data } = await axios.post(
-        "/api/users",
-        { name, pic, email, password },
+        "https://pocketpantryapp.herokuapp.com/api/users/register",
+        {First_name, Last_name, Email, Password},
         config
       );
   

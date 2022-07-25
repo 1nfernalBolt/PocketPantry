@@ -33,7 +33,7 @@ export const listRecipes = () => async (dispatch, getState) => {
                 Authorization: `Bearer ${userInfo.token}`,
             },
         };
-        const { data } = await axios.post(`/api/recipe/getRecipes`,  { UserId }, config);
+        const { data } = await axios.post(`https://pocketpantryapp.herokuapp.com/api/recipe/getRecipes`,  { UserId }, config);
 
         dispatch({
             type: RECIPE_LIST_SUCCESS,
@@ -46,7 +46,9 @@ export const listRecipes = () => async (dispatch, getState) => {
                 : error.message;
         dispatch({
             type: RECIPE_LIST_FAIL,
-            payload: message,
+            payload: error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
         });
     }
 };
@@ -112,7 +114,7 @@ export const creatRecipeAction = (RecipeId, Name, RecipeDesc, Image ) => async (
         };
         
         const { data } = await axios.post(
-            `/api/recipe/addRecipe`,
+            `https://pocketpantryapp.herokuapp.com/api/recipe/addRecipe`,
             { UserId, RecipeId, Name, RecipeDesc, Image  },
             config
         );
@@ -149,7 +151,7 @@ export const deletRecipeAction = (id) => async (dispatch, getState) => {
             },
         };
 
-        const { data } = await axios.delete(`/api/removeRecipeById/${id}`, config);
+        const { data } = await axios.delete(`https://pocketpantryapp.herokuapp.com/api/removeRecipeById/${id}`, config);
 
         dispatch({
             type: RECIPE_DELETE_SUCCESS,

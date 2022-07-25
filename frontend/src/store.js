@@ -3,9 +3,10 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from "redux-devtools-extension";
 import { recipeCreateReducer, recipeDeleteReducer, recipeReducers, spoonacularecipeReducer } from './reducers/recipeReducer';
 import { pantryCreateReducer, pantryDeleteReducer, pantryReducers } from './reducers/pantryReducer';
-import { userLoginReducer } from './reducers/userReducers';
+import { userLoginReducer, userRegisterReducer } from './reducers/userReducers';
 const reducer = combineReducers ({
     userLogin: userLoginReducer,
+    userRegister: userRegisterReducer,
     recipeList: recipeReducers, 
     mainrecipe: spoonacularecipeReducer,
     recipeCreate: recipeCreateReducer,
@@ -32,4 +33,4 @@ const store = createStore(
   composeWithDevTools(applyMiddleware(...middleware))
 );
  
-export default store
+export default store;

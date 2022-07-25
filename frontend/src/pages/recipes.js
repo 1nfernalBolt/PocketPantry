@@ -7,6 +7,7 @@ import { listRecipes, listRecipeSpoonacula } from "../actions/recipeActions"
 import axios from "axios";
 import parse from 'html-react-parser'
 import { creatRecipeAction } from ".././actions/recipeActions"
+
 const Recipes = ({ history }) => {
     const [RecipeId, setRecipeId] = useState("");
     const [Name, setName] = useState("");
@@ -31,9 +32,6 @@ const Recipes = ({ history }) => {
     const recipeDelete = useSelector((state) => state.recipeDelete);
     const { success: successDelete, } = recipeDelete;
 
-    function sayHello(name) {
-        console.log(`hello, ${name}`);
-    }
     const submitHandler = (RecipeId, Name, RecipeDesc, Image) => {
 
         dispatch(creatRecipeAction(RecipeId, Name, RecipeDesc, Image));
@@ -52,11 +50,10 @@ const Recipes = ({ history }) => {
         successDelete,
     ]);
 
-
-
     function SearchRecipe(search) {
 
     }
+    
     return (
         <div className="main">
             <div className="flex-container">

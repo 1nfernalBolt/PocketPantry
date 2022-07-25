@@ -94,12 +94,15 @@ export default makeStyles(() => ({
     questionText:{
         fontFamily: 'Inria Sans',
         fontSize: '20px',
-        
+        marginLeft: '3%',
+        marginTop: '6%'
     },
     emailInstructions:{
         fontFamily: 'Inria Sans',
         fontSize: '30px',
         marginTop: '5%',
+        marginLeft: '5%',
+        marginRight: '5%'
     },
     underline:{
         fontFamily: 'Inria Sans',

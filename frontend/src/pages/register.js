@@ -1,12 +1,13 @@
-import React from "react";
-import {Routes, Route, useNavigate} from "react-router-dom";
+import React, { useEffect } from "react";
+import {useNavigate, useHistory} from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
 import useStyles from './styles';
 import pantry from '../images/pantry.jpg';
+import { useDispatch, useSelector } from "react-redux";
 import { Parallax, ParallaxLayer} from '@react-spring/parallax';
-import axios from "axios";
+import { register } from "../actions/userActions";
 
 const Register = () => {
 
@@ -17,41 +18,33 @@ const Register = () => {
     const [Password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState(null);
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
-    
-    const classes = useStyles();
 
+    const dispatch = useDispatch();
+    const classes = useStyles();
     const navigate = useNavigate();
 
     const navigateToEmailConf = () => {
         navigate('/emailConf');
     };
 
+    const userRegister = useSelector(state => state.userRegister);
+    const { loading, error, userInfo } = userRegister;
+
+    useEffect(() => {
+        if(userInfo) {
+            navigateToEmailConf();
+        }
+    }, [userInfo]);
+
     const submitHandler = async (e) => {
         e.preventDefault();
 
-        if (Password !== confirmPassword) {
-            setMessage('Passwords do not match');
+        if(Password !== confirmPassword) {
+            alert('Passwords do not match');
+        } else if (Email !== confirmEmail)  {
+            alert('Emails do not match');
         } else {
-            setMessage(null);
-            try {
-                const config = {
-                    headers: {
-                        "Content-type":"application/json",
-                    },
-                };
-
-                setLoading(true);
-
-                const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/register", {First_name, Last_name, Email, Password}, config);
-                setLoading(false);
-                localStorage.setItem("userInfo", JSON.stringify(data));
-
-            } catch (error) {
-                setError(error.response.data.message);
-                
-            }
+            dispatch(register(First_name, Last_name, Email, Password));
         }
     };
 

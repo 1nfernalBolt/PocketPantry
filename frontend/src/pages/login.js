@@ -7,49 +7,45 @@ import axios from 'axios';
 import {Routes, Route, useNavigate} from 'react-router-dom';
 import Register from './register';
 import ForgotPass from "./forgotPass";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../actions/userActions";
 
-const Login = () => {
+const Login = ({history}) => {
 
     const navigate = useNavigate();
     
     const navigateToForgot = () => {
         navigate('/forgotPass');
-      };
+    };
     const navigateToRegister = () => {
         navigate('/register');
-      };
+    };
+
+    const navigateToRecipe = () => {
+        navigate('/recipes');
+    };
 
     const classes = useStyles();
 
     const [Email, setEmail]  = useState("");
     const [Password, setPassword] = useState("");
-    const [error, setError] = useState(false);
-    const [loading, setLoading] = useState(false);
+
+    const dispatch = useDispatch();
+
+    const userLogin = useSelector((state) => state.userLogin);
+    const { loading, error, userInfo } = userLogin;
+
+    useEffect(() => {
+        if(userInfo) {
+            navigateToRecipe();
+        }
+    }, [history, userInfo]);
 
     const submitHandler = async (e) => {
         e.preventDefault();
         
-        try {
-            const config = {
-                headers: {
-                    "Content-type":"application/json",
-                },
-            };
-
-            setLoading(true);
-            const {data} = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/login", {Email,Password}, config);
-            console.log(data);
-            localStorage.setItem("userInfo",JSON.stringify(data));
-
-            setLoading(false);
-
-            console.log("Login Successful");
-        } catch (error) {
-            setError(error.response.data.message);
-            setLoading(false);
-            
-        }
+        dispatch(login(Email, Password));
     };
 
     return (
@@ -78,7 +74,7 @@ const Login = () => {
                     </Form.Group>
                     <button onClick={navigateToForgot} className = {classes.forgotPass} >forgot password?</button><br />
                     <button className = {classes.loginButton} type="submit" >Sign In</button>
-                    <p className = {classes.questionText} >Don't have an account?</p>
+                    <p className = {classes.questionText} class="text-dark">Don't have an account?</p>
                     <button onClick={navigateToRegister} className = {classes.underline} >Register</button><br />
                 </Form>
             </div>

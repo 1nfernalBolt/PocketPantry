@@ -19,12 +19,12 @@ const App = () => {
             <Router>
                 <Navbar />
                 <Routes>
-                    <Route path='/' element={<Register />} />
+                    <Route path='/' element={<Recipes />} />
                     <Route path='/register' element={<Register />} />
                     <Route path='/login' element={<Login />} />
                     <Route path='/emailConf' element={<EmailConf />} />
-                    <Route path="/pantry" element={<Pantry />} />
-                    <Route path="/recipes" element={<Recipes />} />
+                    <Route path='/pantry' element={<Pantry />} />
+                    <Route path='/recipes' element={<Recipes />} />
                     <Route path='/forgotPass' element={<forgotPass />} />
                 </Routes>
             </Router>

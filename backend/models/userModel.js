@@ -36,6 +36,10 @@ const userSchema = mongoose.Schema(
                     type: String,
                     required: true,
                 },
+                RecipeDesc: {
+                    type: String,
+                    required: true,
+                },
                 Image: {
                     type: String,
                     required: true,
