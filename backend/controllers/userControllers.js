@@ -210,7 +210,6 @@ const sendResetPassEmail = asyncHandler(async (req, res) => {
 
         let rand = Math.floor((Math.random() * 8999) + 1000);
         const token = await VerifyToken.create({
-            jwt_token: generateToken(user._id),
             UserId: user._id,
             Token: rand,
         });
@@ -222,6 +221,7 @@ const sendResetPassEmail = asyncHandler(async (req, res) => {
 
         res.status(201).json({
             UserId: user._id,
+            Token: generateToken(user._id),
             message: "Reset password email sent to user"
         });
     } catch (error) {
