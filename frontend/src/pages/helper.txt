@@ -1,0 +1,36 @@
+aggregateLikes: 9
+analyzedInstructions: [{…}]
+cheap: false
+cookingMinutes: -1
+creditsText: "Foodista.com – The Cooking Encyclopedia Everyone Can Edit"
+cuisines: []
+dairyFree: true
+diets: (4) ['gluten free', 'dairy free', 'lacto ovo vegetarian', 'vegan']
+dishTypes: ['soup']
+extendedIngredients: (9) [{…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}, {…}]
+gaps: "no"
+glutenFree: true
+healthScore: 42
+id: 641057
+image: "https://spoonacular.com/recipeImages/641057-556x370.jpg"
+imageType: "jpg"
+instructions: "Get ready two small saucepans.\nIn one have together 1/2 of the squash and 1/2 of the apple  bring to a simmer, and simmer until just tender when pierced with a fork.\nIn the other, add in the rest of the vegetables along with 1 cup of water  bring this to a rolling boil, reduce to a simmer, and simmer until very very tender. When very tender, remove the vegetables from the heat, and blend these vegetables together (without draining) with the Braggs, spices, sriracha and the additional 1/2 cup water.\nMix the blended part of the soup with the simmered squash and apples. Mix in the cubed tofu, gently re-heat and serve."
+license: "CC BY 3.0"
+lowFodmap: false
+occasions: (2) ['fall', 'winter']
+openLicense: -1
+originalId: null
+preparationMinutes: -1
+pricePerServing: 141.84
+readyInMinutes: 45
+servings: 1
+sourceName: "Foodista"
+sourceUrl: "https://www.foodista.com/recipe/FKQCYKYR/curried-butternut-squash-and-apple-soup"
+spoonacularSourceUrl: "https://spoonacular.com/curried-butternut-squash-and-apple-soup-641057"
+summary: "If you want to add more <b>gluten free, dairy free, lacto ovo vegetarian, and vegan</b> recipes to your recipe box, Curried Butternut Squash and Apple Soup might be a recipe you should try. This recipe serves 1 and costs $1.42 per serving. One portion of this dish contains about <b>9g of protein</b>, <b>3g of fat</b>, and a total of <b>139 calories</b>. It is brought to you by Foodista. 9 people found this recipe to be yummy and satisfying. It works well as a reasonably priced soup. From preparation to the plate, this recipe takes approximately <b>approximately 45 minutes</b>. If you have cauliflower, curry powder, braggs liquid aminos, and a few other ingredients on hand, you can make it. <b>Autumn</b> will be even more special with this recipe. All things considered, we decided this recipe <b>deserves a spoonacular score of 89%</b>. This score is super. Similar recipes are <a href=\"https://spoonacular.com/recipes/curried-butternut-squash-and-apple-soup-836936\">Curried Butternut Squash and Apple Soup</a>, <a href=\"https://spoonacular.com/recipes/curried-apple-+-butternut-squash-soup-620121\">Curried Apple + Butternut Squash Soup</a>, and <a href=\"https://spoonacular.com/recipes/curried-butternut-squash-apple-soup-crock-pot-94742\">Curried Butternut Squash & Apple Soup - Crock Pot</a>."
+sustainable: false
+title: "Curried Butternut Squash and Apple Soup"
+vegan: true
+vegetarian: true
+veryHealthy: false
+veryPopular: false

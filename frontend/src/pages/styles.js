@@ -22,7 +22,7 @@ export default makeStyles(() => ({
         margin: 'auto',
         marginTop: '5%',
         width: '30%',
-        height: '60%',
+        height: '80%',
         textAlign: 'center',
         background: 'rgba(255, 255, 255, 0.9)',
         paddingTop: '1%',

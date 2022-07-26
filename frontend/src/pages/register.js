@@ -23,16 +23,13 @@ const Register = () => {
     const classes = useStyles();
     const navigate = useNavigate();
 
-    const navigateToEmailConf = () => {
-        navigate('/emailConf');
-    };
 
     const userRegister = useSelector(state => state.userRegister);
     const { loading, error, userInfo } = userRegister;
 
     useEffect(() => {
         if(userInfo) {
-            navigateToEmailConf();
+            navigate('/emailConf');
         }
     }, [userInfo]);
 

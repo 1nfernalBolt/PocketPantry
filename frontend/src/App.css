@@ -6,13 +6,16 @@
   font-family: 'Roboto', sans-serif;
 }
 
-
 .hidden{
   display: none;
+  font-family: 'Inria Sans';
 }
 
 .nav-links{
-  
-  font-family: Inria Sans;
+  font-family: 'Inria Sans';
+}
+
+.font-link {
+  font-family: 'Inria Sans';
 }
 

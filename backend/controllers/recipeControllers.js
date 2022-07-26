@@ -29,18 +29,15 @@ const clearRecipes = asyncHandler(async (req, res) => {
 
 // Adds a recipe to a user's saved recipes
 const addRecipe = asyncHandler(async (req,res) => {
-    const { UserId, RecipeId, Name, RecipeDesc, Image } = req.body;
-
+    const { UserId, RecipeId, Name,ingredients, RecipeDesc, Image } = req.body;
+    console.log(UserId, RecipeId, Name,ingredients, RecipeDesc, Image )
     const user = await User.findById(UserId);
-
     if (user) {
         let recipeList = user.Saved_recipes;
 
         // If there are no recipes saved, just add one
         if (recipeList.length == 0) {
-            
-            console.log(RecipeId, Name, RecipeDesc, Image);
-            recipeList.push({RecipeId, Name, RecipeDesc, Image});
+            recipeList.push({RecipeId, Name,ingredients, RecipeDesc, Image});
             user.Saved_recipes = recipeList;
             
             const updatedUser = await user.save();
@@ -67,7 +64,7 @@ const addRecipe = asyncHandler(async (req,res) => {
                 }
             }
             // If no matching recipe was found, add it
-            recipeList.push({RecipeId, Name, RecipeDesc, Image});
+            recipeList.push({RecipeId, Name,ingredients, RecipeDesc, Image});
             user.Saved_recipes = recipeList;
 
             const updatedUser = await user.save();
@@ -94,9 +91,8 @@ const addRecipe = asyncHandler(async (req,res) => {
 // Removes a recipe from a user's saved recipes
 const removeRecipeById = asyncHandler(async (req,res) => {
     const { UserId, RecipeId } = req.body;
-
     const user = await User.findById(UserId);
-
+    
     if (user) {
         let recipeList = user.Saved_recipes;
 
@@ -168,7 +164,6 @@ const searchRecipeByName = asyncHandler(async (req,res) => {
 const getRecipes = asyncHandler(async (req, res) => {
     
     const {UserId} = req.body;
-    console.log(req.bod);
     const user = await User.findById(UserId);
 
     if (user) {

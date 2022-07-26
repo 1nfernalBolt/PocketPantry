@@ -15,38 +15,6 @@ const EmailConf =  () => {
     const [resend, setResend] = useState("");
     const [error, setError] = useState("");
 
-    const Verify = async (e) => {
-        e.preventDefault();
-
-        try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer {$userInfo.token}`,
-                },
-            };
-
-            const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/verify", )
-        } catch (error) {
-            
-        }
-    }
-
-    const resendVerify = async (e) => {
-        e.preventDefault();
-
-        try {
-            const config = {
-                headers: {
-                    Authorization: `Bearer {$userInfo.token}`,
-                },
-            };
-
-            const { data } = await axios.post("https://pocketpantryapp.herokuapp.com/api/users/resendVerificationEmail", )
-        } catch (error) {
-            
-        }
-    }
-
     const classes = useStyles();
     return (
         <div>
@@ -57,7 +25,7 @@ const EmailConf =  () => {
             <br></br>
             <img className = {classes.emailPic} src={email} alt="email icon"></img>
             <h1 className = {classes.emailInstructions}>Please check your email to verify the address you provided.</h1>
-            <Form onSubmit = {Verify}>
+            <Form >
                     <Form.Group controlId="Email Confirmation">
                         <Form.Control 
                             className = {classes.loginUsernameBox} 
@@ -68,8 +36,10 @@ const EmailConf =  () => {
                     </Form.Group>
                     <button className = {classes.loginButton} type="submit">Submit</button>
             </Form>
-            <p className = {classes.questionText} class="text-dark">Didn't get an email?</p>
-            <button className = {classes.underline} >Send again</button>
+            <Form >
+                <p className = {classes.questionText} class="text-dark">Didn't get an email?</p>
+                <button className = {classes.underline} type="submit">Send again</button>
+            </Form>
         </div>
         </ParallaxLayer>
         </Parallax>
